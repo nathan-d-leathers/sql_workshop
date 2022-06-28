@@ -1,11 +1,15 @@
 -- Create a database.
 -- $ createdb phone_book
 --
+-- cd into phone_book directory
+
 -- From the phone_book directory, import the sample data.
 -- $ psql -f data/contacts.sql phone_book
---
+
 -- Start the psql PostgreSQL client.
 -- $ psql phone_book
+
+-- show all; command will show all data files
 
 -- The basic SELECT statement:
 -- https://www.postgresql.org/docs/13/sql-select.html
@@ -204,3 +208,9 @@ select contacts.id, contacts.name,
 from contacts
   left join calls on contacts.id=calls.contact_id
 group by contacts.id, contacts.name;
+
+-- -- phone_book=# select contacts.id, contacts.name, count(*), sum(call_duration), avg(call_duration) from contacts join calls on contacts.id = calls.contact_id group by contacts.id, contacts.name;
+--  id |       name       | count |   sum    |       avg       
+-- ----+------------------+-------+----------+-----------------
+--   1 | Miranda Carroll  |     1 | 00:03:23 | 00:03:23
+--   2 | Lidia Vandervort |     3 | 00:52:26 | 00:17:28.666667
